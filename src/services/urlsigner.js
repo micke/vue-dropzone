@@ -5,6 +5,10 @@ export default {
       contentType: file.type
     }
 
+    if (config.signingPromise != undefined) {
+      return config.signingPromise(file, config);
+    }
+
     return new Promise((resolve, reject) => {
       var fd = new FormData();
       let request = new XMLHttpRequest(),
